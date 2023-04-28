@@ -50,8 +50,7 @@ To update data in the table, you can use the update_where(condition, data, args)
   4. Deleting Data
 To delete data from the table, you can use the delete_by_id(id) method to delete a row by its ID, or the delete_where(condition, args) method to delete rows based on a condition. For example:
   condition = "name = %s"
-  args = ("John",)
-
+  args = ("Marylyn",)
   orm.delete_where(condition, args)
   
   
