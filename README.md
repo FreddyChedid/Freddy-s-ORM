@@ -1,16 +1,18 @@
-ORM CODE DOCUMENTATION
-
+ORM Code Documentation
 This markdown file explains the usage of the ORM (Object-Relational Mapping) code which is a Python class that helps interact with relational databases using object-oriented programming.
 
 Requirements
-
 This code requires the installation of pymysql Python package. The package can be installed using pip:
-```pip install pymysql```
+pip install pymysql
 
 Usage
 Creating an ORM object
-To use this ORM class, you need to create an instance of the class by passing the database configuration and table name to the constructor. For example, to create an ORM object for a table named "users" in a MySQL database with the following configuration:
-```
+To use this ORM class, you need to create an instance of the class by passing the database configuration and table name to the constructor.
+
+For example, to create an ORM object for a table named "users" in a MySQL database with the following configuration:
+
+makefile
+Copy code
 from orm import ORM
 
 db_config = {
@@ -23,65 +25,67 @@ db_config = {
 table_name = "users"
 
 orm = ORM(db_config, table_name)
-```
-Some of the most commonly used methods in this ORM module:
-1. Selecting Data
+Selecting Data
 The ORM object provides several methods for selecting data from the database.
 
 To select all rows from the table, you can use the select_all() method:
-  ```
-  rows = orm.select_all()
-  ```
+
+makefile
+Copy code
+rows = orm.select_all()
 To select a row by its ID, you can use the select_by_id(id) method:
-  ```
-  row = orm.select_by_id(1) #We are reading the record where id=1
-  ```
- 
-2. Inserting Data
+
+makefile
+Copy code
+row = orm.select_by_id(1) #We are reading the record where id=1
+Inserting Data
 To insert data into the table, you can use the insert(data) method. The method takes a dictionary of column names and values as input. For example:
-```
+
+sql
+Copy code
   table_name = 'mytable' 
   orm = ORM(db_config, table_name) 
   # define the data to be inserted as a dictionary
   data = {'name': 'Freddy Chedid', 'email': 'freddychedid@gmail.com', 'age': 20 } 
   # call the insert method to insert the data into the table 
   result = orm.insert(data) 
-```
- 3. Updating Data
+Updating Data
 To update data in the table, you can use the update_where(condition, data, args) method. The method takes three arguments: a condition for selecting the rows to update, a dictionary of column names and new values, and a tuple of arguments to substitute into the condition. For example:
-  ```
-  condition = "name = %s"
-  data={"age": 19, "email": "madafaddoul@gmail.com"}
-  args=("Mada Faddoul",)
-  orm.update_where(condition, data, args)
-  ```
-  
-  4. Deleting Data
+
+makefile
+Copy code
+condition = "name = %s"
+data={"age": 19, "email": "madafaddoul@gmail.com"}
+args=("Mada Faddoul",)
+orm.update_where(condition, data, args)
+Deleting Data
 To delete data from the table, you can use the delete_by_id(id) method to delete a row by its ID, or the delete_where(condition, args) method to delete rows based on a condition. For example:
-  ```
-  condition = "name = %s"
-  args = ("Marylyn",)
-  orm.delete_where(condition, args)
-  ```
-  
- or even
-  ```
-  orm.delete_by_id(1)
-  
-  ```
 
-  5. Creating a Table: (maybe one of the most important methods):
-    ```
-    table_name = 'mytable' 
+makefile
+Copy code
+condition = "name = %s"
+args = ("Marylyn",)
+orm.delete_where(condition, args)
+or even
 
-    mytable = ORM(db_config, table_name) 
-    # define the columns of the new table 
-    columns = { 'id': 'INT NOT NULL AUTO_INCREMENT PRIMARY KEY', 
-                'name': 'VARCHAR(255) NOT NULL', 
-                'age': 'INT', 
-                'email': 'VARCHAR(255)'} 
+scss
+Copy code
+orm.delete_by_id(1)
+Creating a Table
+This method is one of the most important methods:
 
-    # create the new table using the ORM instance 
+sql
+Copy code
+table_name = 'mytable' 
+
+mytable = ORM(db_config, table_name) 
+# define the columns of the new table 
+columns = { 'id': 'INT NOT NULL AUTO_INCREMENT PRIMARY KEY', 
+            'name': 'VARCHAR(255) NOT NULL', 
+            'age': 'INT', 
+            'email': 'VARCHAR(255)'} 
+
+# create the new table using the ORM instance 
     result = mytable.create_table(columns)
     
 The ORM object also provides several other methods for working with the database:
