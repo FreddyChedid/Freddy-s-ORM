@@ -88,7 +88,7 @@ To delete data from the table, you can use the delete_by_id(id) method to delete
 
   5. Creating a Table: (maybe one of the most important methods):
     
-    ```
+    
     table_name = 'mytable' 
 
     mytable = ORM(db_config, table_name) 
