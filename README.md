@@ -33,13 +33,14 @@ To select a row by its ID, you can use the select_by_id(id) method:
  
 2. Inserting Data
 To insert data into the table, you can use the insert(data) method. The method takes a dictionary of column names and values as input. For example:
+```
   table_name = 'mytable' 
   orm = ORM(db_config, table_name) 
   # define the data to be inserted as a dictionary
   data = {'name': 'Freddy Chedid', 'email': 'freddychedid@gmail.com', 'age': 20 } 
   # call the insert method to insert the data into the table 
   result = orm.insert(data) 
-
+```
  3. Updating Data
 To update data in the table, you can use the update_where(condition, data, args) method. The method takes three arguments: a condition for selecting the rows to update, a dictionary of column names and new values, and a tuple of arguments to substitute into the condition. For example:
   condition = "name = %s"
