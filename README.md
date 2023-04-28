@@ -8,7 +8,9 @@ This code requires the installation of pymysql Python package. The package can b
 ```pip install pymysql```
 
 Usage
+
 Creating an ORM object
+
 To use this ORM class, you need to create an instance of the class by passing the database configuration and table name to the constructor. For example, to create an ORM object for a table named "users" in a MySQL database with the following configuration:
 ```
 from orm import ORM
