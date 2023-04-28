@@ -80,7 +80,7 @@ To delete data from the table, you can use the delete_by_id(id) method to delete
                 'email': 'VARCHAR(255)'} 
 
     # create the new table using the ORM instance 
-    result = mytable.create_table(columns)```
+    result = mytable.create_table(columns)
     
 The ORM object also provides several other methods for working with the database:
 - truncate() method: Truncates the table.
