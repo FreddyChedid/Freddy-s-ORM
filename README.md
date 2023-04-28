@@ -27,9 +27,13 @@ Some of the most commonly used methods in this ORM module:
 The ORM object provides several methods for selecting data from the database.
 
 To select all rows from the table, you can use the select_all() method:
-  ```rows = orm.select_all()```
+  ```
+  rows = orm.select_all()
+  ```
 To select a row by its ID, you can use the select_by_id(id) method:
-  ```row = orm.select_by_id(1) #We are reading the record where id=1```
+  ```
+  row = orm.select_by_id(1) #We are reading the record where id=1
+  ```
  
 2. Inserting Data
 To insert data into the table, you can use the insert(data) method. The method takes a dictionary of column names and values as input. For example:
@@ -43,10 +47,12 @@ To insert data into the table, you can use the insert(data) method. The method t
 ```
  3. Updating Data
 To update data in the table, you can use the update_where(condition, data, args) method. The method takes three arguments: a condition for selecting the rows to update, a dictionary of column names and new values, and a tuple of arguments to substitute into the condition. For example:
-  ```condition = "name = %s"
+  ```
+  condition = "name = %s"
   data={"age": 19, "email": "madafaddoul@gmail.com"}
   args=("Mada Faddoul",)
-  orm.update_where(condition, data, args)```
+  orm.update_where(condition, data, args)
+  ```
   
   4. Deleting Data
 To delete data from the table, you can use the delete_by_id(id) method to delete a row by its ID, or the delete_where(condition, args) method to delete rows based on a condition. For example:
@@ -57,7 +63,10 @@ To delete data from the table, you can use the delete_by_id(id) method to delete
   ```
   
  or even
-  ```orm.delete_by_id(1)```
+  ```
+  orm.delete_by_id(1)
+  
+  ```
 
   5. Creating a Table: (maybe one of the most important methods):
     ```
