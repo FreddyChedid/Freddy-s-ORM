@@ -82,8 +82,8 @@ To delete data from the table, you can use the delete_by_id(id) method to delete
     # create the new table using the ORM instance 
     result = mytable.create_table(columns) 
     print(result)
+    ```
     
-```
 The ORM object also provides several other methods for working with the database:
 - truncate() method: Truncates the table.
 - alter_table_add_column(column_name, data_type) method: Adds a new column to the table.
@@ -103,4 +103,4 @@ The ORM object also provides several other methods for working with the database
 - replace(): replaces the row with the given ID with new data.
 - insert_into_select(): inserts the result of a SELECT query into the table.
 
-Also, you don't have to worry about inserting a wrong data type into the database.   #The ORM will make sure the data type you're inserting into a column respects the data type of the column, otherwise, the ORM will be printing a little message warning you to pay attention.
+Also, you don't have to worry about inserting a wrong data type into the database. The ORM will make sure the data type you're inserting into a column respects the data type of the column, otherwise, the ORM will be printing a little message warning you to pay attention.
