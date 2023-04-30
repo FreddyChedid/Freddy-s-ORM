@@ -43,13 +43,13 @@ To select a row by its ID, you can use the select_by_id(id) method:
   ```
   
 To select a specific thing:
-
+  ```
   rows = orm.select("name", "age > %s", (19,))
-  
+  ```
   if many columns:
-  
+  ```
   rows = orm.select(["name", "email", "age > %s", (19,))
- 
+  ```
 2. Inserting Data
 
 To insert data into the table, you can use the insert(data) method. The method takes a dictionary of column names and values as input. For example:
