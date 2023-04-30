@@ -33,6 +33,15 @@ class ORM:
         query = f"SELECT * FROM {self._table_name} WHERE id = %s"
         return self._execute(query, (id,))
 
+
+    def select(self, columns="*", condition=None, args=None):
+        if isinstance(columns, list):
+            columns = ",".join(columns)
+        query = f"SELECT {columns} FROM {self._table_name}"
+        if condition:
+            query += f" WHERE {condition}"
+        return self._execute(query, args)
+
     def insert(self, data):
         columns = ",".join(data.keys())
         values = ",".join(["%s"] * len(data))
@@ -51,6 +60,15 @@ class ORM:
                 print(f"Error: {value} is not a string, expected type {column_data_type}")
         
         return self._execute(query, tuple(data.values()))
+    
+    def insert_many(self, data):
+        placeholders = ", ".join(["%s"] * len(data))
+        columns = ", ".join(data[0].keys())
+        query = f"INSERT INTO {self._table_name} ({columns}) VALUES ({placeholders})"
+        values = tuple(d.values() for d in data)
+        return self._execute(query, values)
+
+
 
     def delete_by_id(self, id):
         query = f"DELETE FROM {self._table_name} WHERE id = %s"
