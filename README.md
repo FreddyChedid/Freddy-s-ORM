@@ -48,7 +48,7 @@ To select a specific thing:
   ```
   if many columns:
   ```
-  rows = orm.select(["name", "email", "age > %s", (19,))
+  rows = orm.select(["name", "email"], "age > %s", (19,))
   ```
 2. Inserting Data
 
