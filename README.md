@@ -73,6 +73,14 @@ To update data in the table, you can use the update_where(condition, data, args)
   args=("Mada Faddoul",)
   orm.update_where(condition, data, args)
   ```
+ 
+ We can also update the table based on many conditions. For example:
+ ```
+ condition = "name = %s AND age>=%s"
+ data={"age":19, "email": "madafaddoul@gmail.com"}
+ args=("Mada Faddoul", 19)
+ orm.update_where(condition, data, args)
+ ```
   
   
   4. Deleting Data
