@@ -33,8 +33,7 @@ class ORM:
         query = f"SELECT * FROM {self._table_name} WHERE id = %s"
         return self._execute(query, (id,))
 
-
-    def select(self, columns="*", condition=None, args=None):
+    def select(self, columns, condition=None, args=None):
         if isinstance(columns, list):
             columns = ",".join(columns)
         query = f"SELECT {columns} FROM {self._table_name}"
@@ -211,8 +210,35 @@ class ORM:
         query = f"INSERT INTO {self._table_name} ({columns_str}) {select_query}"
         return self._execute(query)
 
+    def column_min(self, column, condition=None):
+        query = f"SELECT MIN({column}) FROM {self._table_name} "
+        if condition != None:
+            query += f"WHERE {condition}"
+        return self._execute(query)
+    
+    def column_max(self, column, condition=None):
+        query = f"SELECT MAX({column}) FROM {self._table_name} "
+        if condition != None:
+            query += f"WHERE {condition}"
+        return self._execute(query)
 
-
-
-
+    def get_all_columns_names(self):
+        query = f"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{self._table_name}'"
+        results = self._execute(query)
+        column_names = [result[0] for result in results]
+        return column_names
+    
+    def search(self, keyword, columns=None):
+        if columns is None:
+            columns_str = '*'
+            columns = self.get_all_columns_names()
+        else:
+            columns_str = ','.join(columns)
+        condition = []
+        for column in columns:
+            condition.append(f"{column} LIKE %s")
+        condition_str = ' OR '.join(condition)
+        query = f"SELECT {columns_str} FROM {self._table_name} WHERE {condition_str} "
+        args = tuple(f"%{keyword}%" for condition in range(len(condition)))
+        return self._execute(query, args)
 
